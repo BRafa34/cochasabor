@@ -1,0 +1,241 @@
+{
+  "categories": [
+    {
+      "id": "restaurantes",
+      "name": "Restaurantes",
+      "singular": "Restaurante",
+      "icon": "fork",
+      "description": "Sabores para compartir"
+    },
+    {
+      "id": "cafes",
+      "name": "Cafés",
+      "singular": "Café",
+      "icon": "coffee",
+      "description": "Una pausa con sabor"
+    },
+    {
+      "id": "miradores",
+      "name": "Miradores",
+      "singular": "Mirador",
+      "icon": "mountain",
+      "description": "Vistas que enamoran"
+    },
+    {
+      "id": "atractivos",
+      "name": "Atractivos turísticos",
+      "singular": "Atractivo turístico",
+      "icon": "compass",
+      "description": "Rincones por descubrir"
+    }
+  ],
+  "places": [
+    {
+      "id": "p1",
+      "slug": "la-casa-del-pique",
+      "name": "La Casa del Pique",
+      "categoryIds": ["restaurantes"],
+      "zone": "Zona Norte",
+      "address": "Avenida América, zona norte (dirección de ejemplo)",
+      "description": "Un espacio imaginado para compartir la cocina de la Llajta sin prisa. En esta ficha de demostración, el pique y las recetas de casa se sirven al centro de la mesa: una invitación a conversar y descubrir sabores juntos.\n\nUna opción de ejemplo para un almuerzo familiar o una salida con amigos. Los datos prácticos son simulados; no corresponden a un establecimiento verificado.",
+      "shortDescription": "Tradición cochala, porciones para compartir y sabor de casa.",
+      "image": "/media/food.webp",
+      "imageAlt": "Un plato de carne con acompañamientos; fotografía gastronómica ilustrativa",
+      "gallery": ["/media/hero.webp", "/media/restaurant.webp"],
+      "price": "Bs 35–70",
+      "hours": "Lunes a sábado · 11:30–22:00\nDomingo · 11:30–16:00",
+      "featured": true
+    },
+    {
+      "id": "p2",
+      "slug": "cafe-del-patio",
+      "name": "Café del Patio",
+      "categoryIds": ["cafes", "restaurantes"],
+      "zone": "Centro",
+      "address": "Calle España, centro (dirección de ejemplo)",
+      "description": "Un café de demostración inspirado en los patios tranquilos y las conversaciones largas. Café recién preparado, panadería y un rincón para leer forman parte de esta propuesta ficticia.\n\nImagina una pausa después de caminar por el centro, con una bebida caliente y algo dulce. La fotografía es ilustrativa y los horarios y precios son ejemplos.",
+      "shortDescription": "Café, un patio tranquilo y tiempo para disfrutar la pausa.",
+      "image": "/media/coffee.webp",
+      "imageAlt": "Tazas de café recién preparado sobre una mesa; fotografía ilustrativa",
+      "gallery": ["/media/bakery.webp", "/media/restaurant.webp"],
+      "price": "Bs 15–35",
+      "hours": "Lunes a sábado · 08:00–20:00\nDomingo · 09:00–14:00",
+      "featured": true,
+      "video": {
+        "description": "Clip de demostración sin audio: una fotografía ilustrativa de café aparece y se desvanece. No muestra un establecimiento real.",
+        "poster": "/media/coffee.webp",
+        "src": "/media/cafe-demo.mp4"
+      }
+    },
+    {
+      "id": "p3",
+      "slug": "mirador-del-valle",
+      "name": "Mirador del Valle",
+      "categoryIds": ["miradores", "atractivos"],
+      "zone": "Zona Este",
+      "address": "Camino de las colinas (ubicación de ejemplo)",
+      "description": "Una ficha ficticia para mostrar cómo descubrir miradores en CochaSabor. El paisaje y la tranquilidad inspiran un plan sencillo: una caminata corta, una conversación y un momento para mirar a lo lejos.\n\nEsta ubicación no define un sendero real ni condiciones de acceso. La imagen de montañas es ilustrativa y no representa un mirador verificado de Cochabamba.",
+      "shortDescription": "Una nueva perspectiva, aire libre y una tarde sin apuro.",
+      "image": "/media/landscape.webp",
+      "imageAlt": "Montañas al aire libre; paisaje ilustrativo que no representa una ubicación verificada",
+      "gallery": ["/media/forest.webp"],
+      "price": "Gratuito (demo)",
+      "hours": "Horario de ejemplo · 08:00–18:00",
+      "featured": true
+    },
+    {
+      "id": "p4",
+      "slug": "el-fogon-de-la-llajta",
+      "name": "El Fogón de la Llajta",
+      "categoryIds": ["restaurantes"],
+      "zone": "Queru Queru",
+      "address": "Zona Queru Queru (dirección de ejemplo)",
+      "description": "Restaurante ficticio para explorar platos tradicionales, comidas en grupo y sobremesas. Esta ficha reúne datos simulados para probar los filtros de cocina y zona. Los precios, horarios y fotografías son de demostración.",
+      "shortDescription": "Cocina de la tierra y una mesa que siempre invita a compartir.",
+      "image": "/media/restaurant.webp",
+      "imageAlt": "Mesa de restaurante con platos servidos; fotografía ilustrativa",
+      "gallery": ["/media/food.webp"],
+      "price": "Bs 40–85",
+      "hours": "Martes a domingo · 12:00–21:00",
+      "featured": false
+    },
+    {
+      "id": "p5",
+      "slug": "pan-y-cafe",
+      "name": "Pan y Café",
+      "categoryIds": ["cafes"],
+      "zone": "Zona Norte",
+      "address": "Avenida Melchor Pérez (dirección de ejemplo)",
+      "description": "Una panadería y café ficticios para el primer desayuno del día o la pausa de media tarde. La propuesta de demostración combina panes, bebidas calientes y una mesa junto a la ventana. No corresponde a un negocio verificado.",
+      "shortDescription": "Pan artesanal, algo dulce y el aroma de un buen comienzo.",
+      "image": "/media/bakery.webp",
+      "imageAlt": "Panes de panadería artesanal; fotografía ilustrativa",
+      "gallery": ["/media/coffee.webp"],
+      "price": "Bs 12–30",
+      "hours": "Lunes a sábado · 07:30–19:00",
+      "featured": false
+    },
+    {
+      "id": "p6",
+      "slug": "sendero-de-las-colinas",
+      "name": "Sendero de las Colinas",
+      "categoryIds": ["miradores"],
+      "zone": "Tiquipaya",
+      "address": "Entorno de Tiquipaya (ubicación de ejemplo)",
+      "description": "Lugar ficticio de demostración para representar una salida al aire libre. Sus datos sirven para probar el catálogo, las fotografías y el estado sin reseñas. No se ofrece un recorrido real ni indicaciones de acceso.",
+      "shortDescription": "Un paseo de ejemplo para quienes buscan mirar más lejos.",
+      "image": "/media/hills.webp",
+      "imageAlt": "Paisaje natural ilustrativo de colinas",
+      "gallery": [],
+      "price": "Gratuito (demo)",
+      "hours": "Horario por confirmar",
+      "featured": false
+    },
+    {
+      "id": "p7",
+      "slug": "jardin-de-la-llajta",
+      "name": "Jardín de la Llajta",
+      "categoryIds": ["atractivos"],
+      "zone": "Centro",
+      "address": "Zona central (ubicación de ejemplo)",
+      "description": "Un atractivo ficticio para imaginar una tarde entre vegetación, senderos y rincones tranquilos. El jardín forma parte de los datos simulados del directorio; la fotografía no representa un parque real de Cochabamba.",
+      "shortDescription": "Verde, calma y pequeños rincones para disfrutar la tarde.",
+      "image": "/media/forest.webp",
+      "imageAlt": "Sendero entre árboles; fotografía natural ilustrativa",
+      "gallery": ["/media/hills.webp"],
+      "price": "Bs 10 (demo)",
+      "hours": "Martes a domingo · 09:00–17:00",
+      "featured": false
+    },
+    {
+      "id": "p8",
+      "slug": "patio-de-los-artesanos",
+      "name": "Patio de los Artesanos",
+      "categoryIds": ["atractivos", "cafes"],
+      "zone": "Cala Cala",
+      "address": "Zona Cala Cala (dirección de ejemplo)",
+      "description": "Una ficha ficticia que reúne artesanía, conversación y una pausa de café. Permite explorar un lugar con varias categorías sin duplicarlo en el listado. Todos los datos prácticos y opiniones son de demostración.",
+      "shortDescription": "Un encuentro de historias, oficios y una buena taza de café.",
+      "image": "/media/patio.webp",
+      "imageAlt": "Interior cálido de un local; fotografía ilustrativa",
+      "gallery": ["/media/coffee.webp"],
+      "price": "Entrada libre (demo)",
+      "hours": "Miércoles a domingo · 10:00–19:00",
+      "featured": false
+    }
+  ],
+  "reviews": [
+    {
+      "id": "r1",
+      "placeId": "p1",
+      "userId": "seed-1",
+      "displayName": "Visitante demo 01",
+      "rating": 5,
+      "comment": "Una experiencia de ejemplo: nos gustó poder compartir los platos y conversar con calma. Una buena idea para un almuerzo entre amigos.",
+      "createdAt": "2026-10-10T16:00:00Z"
+    },
+    {
+      "id": "r2",
+      "placeId": "p1",
+      "userId": "seed-2",
+      "displayName": "Visitante demo 02",
+      "rating": 4,
+      "comment": "Reseña ficticia para probar el directorio. El ambiente se presta para compartir y la propuesta de cocina tradicional es interesante.",
+      "createdAt": "2026-10-09T18:00:00Z"
+    },
+    {
+      "id": "r3",
+      "placeId": "p2",
+      "userId": "seed-3",
+      "displayName": "Visitante demo 03",
+      "rating": 5,
+      "comment": "Un café de demostración para imaginar una tarde tranquila. Me gustó la combinación de panadería y un patio para leer.",
+      "createdAt": "2026-10-08T16:00:00Z"
+    },
+    {
+      "id": "r4",
+      "placeId": "p2",
+      "userId": "seed-4",
+      "displayName": "Visitante demo 04",
+      "rating": 4,
+      "comment": "Opinión ficticia: un buen plan de ejemplo para hacer una pausa y tomar algo caliente después de recorrer el centro.",
+      "createdAt": "2026-10-07T16:00:00Z"
+    },
+    {
+      "id": "r5",
+      "placeId": "p3",
+      "userId": "seed-5",
+      "displayName": "Visitante demo 05",
+      "rating": 5,
+      "comment": "Comentario de demostración. La idea de un mirador permite imaginar una salida sencilla para disfrutar el paisaje y el aire libre.",
+      "createdAt": "2026-10-06T16:00:00Z"
+    },
+    {
+      "id": "r6",
+      "placeId": "p4",
+      "userId": "seed-6",
+      "displayName": "Visitante demo 06",
+      "rating": 4,
+      "comment": "Reseña simulada de una comida en grupo. La ficha muestra la información necesaria para comparar opciones del catálogo.",
+      "createdAt": "2026-10-05T16:00:00Z"
+    },
+    {
+      "id": "r7",
+      "placeId": "p5",
+      "userId": "seed-7",
+      "displayName": "Visitante demo 07",
+      "rating": 5,
+      "comment": "Una opinión ficticia para acompañar esta ficha. Un desayuno con pan y café parece una buena manera de empezar el día.",
+      "createdAt": "2026-10-04T16:00:00Z"
+    },
+    {
+      "id": "r8",
+      "placeId": "p7",
+      "userId": "seed-8",
+      "displayName": "Visitante demo 08",
+      "rating": 4,
+      "comment": "Una visita ficticia a un jardín de ejemplo. La propuesta invita a caminar, conversar y encontrar una pausa en la ciudad.",
+      "createdAt": "2026-10-03T16:00:00Z"
+    }
+  ]
+}

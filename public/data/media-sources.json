@@ -1,0 +1,83 @@
+[
+  {
+    "file": "hero.webp",
+    "url": "https://images.unsplash.com/photo-1504674900247-0877df9cc836?fit=crop&w=1440&h=810&fm=webp&q=80",
+    "license": "https://unsplash.com/license",
+    "illustrationOnly": true,
+    "bytes": 423688,
+    "width": 1440,
+    "height": 810
+  },
+  {
+    "file": "food.webp",
+    "url": "https://images.unsplash.com/photo-1544025162-d76694265947?fit=crop&w=640&h=430&fm=webp&q=80",
+    "license": "https://unsplash.com/license",
+    "illustrationOnly": true,
+    "bytes": 71342,
+    "width": 640,
+    "height": 430
+  },
+  {
+    "file": "coffee.webp",
+    "url": "https://images.unsplash.com/photo-1442512595331-e89e73853f31?fit=crop&w=640&h=430&fm=webp&q=80",
+    "license": "https://unsplash.com/license",
+    "illustrationOnly": true,
+    "bytes": 34590,
+    "width": 640,
+    "height": 430
+  },
+  {
+    "file": "landscape.webp",
+    "url": "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?fit=crop&w=800&h=640&fm=webp&q=80",
+    "license": "https://unsplash.com/license",
+    "illustrationOnly": true,
+    "bytes": 158598,
+    "width": 800,
+    "height": 640
+  },
+  {
+    "file": "restaurant.webp",
+    "url": "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?fit=crop&w=640&h=430&fm=webp&q=80",
+    "license": "https://unsplash.com/license",
+    "illustrationOnly": true,
+    "bytes": 64658,
+    "width": 640,
+    "height": 430
+  },
+  {
+    "file": "bakery.webp",
+    "url": "https://images.unsplash.com/photo-1509440159596-0249088772ff?fit=crop&w=640&h=430&fm=webp&q=80",
+    "license": "https://unsplash.com/license",
+    "illustrationOnly": true,
+    "bytes": 134184,
+    "width": 640,
+    "height": 430
+  },
+  {
+    "file": "forest.webp",
+    "url": "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?fit=crop&w=640&h=430&fm=webp&q=80",
+    "license": "https://unsplash.com/license",
+    "illustrationOnly": true,
+    "bytes": 114550,
+    "width": 640,
+    "height": 430
+  },
+  {
+    "file": "hills.webp",
+    "url": "https://images.unsplash.com/photo-1472396961693-142e6e269027?fit=crop&w=640&h=430&fm=webp&q=80",
+    "license": "https://unsplash.com/license",
+    "illustrationOnly": true,
+    "bytes": 121352,
+    "width": 640,
+    "height": 430
+  },
+  {
+    "file": "patio.webp",
+    "url": "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?fit=crop&w=640&h=430&fm=webp&q=80",
+    "license": "https://unsplash.com/license",
+    "illustrationOnly": true,
+    "bytes": 103548,
+    "width": 640,
+    "height": 430
+  }
+]

@@ -1,0 +1,143 @@
+<div class="container detail">
+  <a class="link-arrow back" [routerLink]="backLink()"><app-icon name="back" />Volver a explorar</a>
+  <app-load-state
+    [loading]="directory.repository.loading()"
+    [error]="directory.repository.error()"
+    [empty]="!directory.repository.loading() && !place()"
+    heading="No encontramos este lugar"
+    message="Puede que la dirección haya cambiado. Descubre otras opciones en el catálogo."
+    (retry)="directory.repository.load()"
+  />
+  @if (place(); as p) {
+    <div class="detail-heading">
+      <div>
+        <div class="badges">
+          @for (category of p.categoryIds; track category) {
+            <span>{{ directory.category(category) }}</span>
+          }
+          <span class="demo">{{ directory.mode.isApi() ? 'API' : 'DEMOSTRACIÓN' }}</span>
+        </div>
+        <h1>{{ p.name }}</h1>
+        <div class="subtitle">
+          <span><app-icon name="pin" />{{ p.zone }}, Cochabamba</span
+          ><app-rating [value]="p.ratingAverage" [count]="p.reviewCount" />
+        </div>
+      </div>
+      <button
+        class="button secondary"
+        [attr.aria-pressed]="favorites.has(p.id)"
+        (click)="favorites.toggle(p.id)"
+      >
+        <app-icon name="heart" />{{ favorites.has(p.id) ? 'Lugar guardado' : 'Guardar lugar' }}
+      </button>
+    </div>
+    @if (favorites.error()) {
+      <p class="error-message" role="alert">{{ favorites.error() }}</p>
+    }
+    @if (published()) {
+      <p class="success" role="status">
+        <app-icon name="check" />{{
+          directory.mode.isApi()
+            ? 'Tu reseña se guardó en la base de datos.'
+            : 'Tu reseña se guardó en este navegador.'
+        }}
+        ¡Gracias por compartir tu historia!
+      </p>
+    }
+    <div class="detail-grid">
+      <div>
+        <app-gallery [images]="gallery()" [alt]="p.imageAlt" />
+        <section class="about">
+          <p class="eyebrow">UN POCO DE ESTE LUGAR</p>
+          <h2>Una buena razón para ir.</h2>
+          <p>{{ p.description }}</p>
+          <p class="notice">
+            {{
+              directory.mode.isApi()
+                ? 'Ficha cargada desde la API. Las fotografías, precios u horarios pueden ser ilustrativos mientras se completan esos datos en la base.'
+                : 'Ficha de demostración: nombre, dirección, precios, horarios y reseñas son simulados. Las fotografías son ilustrativas.'
+            }}
+          </p>
+        </section>
+        @if (p.video; as video) {
+          <section class="video">
+            <h2>Un vistazo al lugar</h2>
+            <video
+              controls
+              preload="none"
+              [poster]="video.poster"
+              [attr.aria-label]="video.description"
+            >
+              <source [src]="video.src" type="video/mp4" />
+              <track
+                kind="captions"
+                src="/media/cafe-demo.vtt"
+                srclang="es"
+                label="Descripción en español"
+                default
+              />
+              <p>Tu navegador no puede reproducir este video.</p>
+            </video>
+            <p>{{ video.description }}</p>
+          </section>
+        }
+        <section class="reviews" aria-labelledby="reviews-title">
+          <div class="reviews-heading">
+            <div>
+              <p class="eyebrow">EXPERIENCIAS COMPARTIDAS</p>
+              <h2 id="reviews-title">Cada visita, una historia.</h2>
+            </div>
+            <a
+              class="link-arrow"
+              [routerLink]="['/lugares', p.slug, 'resena']"
+              [queryParams]="{ volver: back() }"
+              >Escribir reseña<app-icon name="arrow"
+            /></a>
+          </div>
+          <app-rating [value]="p.ratingAverage" [count]="p.reviewCount" />
+          @if (directory.localReviews.error()) {
+            <p role="alert" class="error-message">{{ directory.localReviews.error() }}</p>
+          }
+          <app-review-list [reviews]="reviews()" />
+        </section>
+      </div>
+      <aside class="practical">
+        <p class="eyebrow">ANTES DE TU VISITA</p>
+        <h2>Tu plan empieza aquí.</h2>
+        <div class="info">
+          <app-icon name="pin" />
+          <div>
+            <h3>{{ directory.mode.isApi() ? 'Dirección' : 'Dirección de ejemplo' }}</h3>
+            <p>{{ p.address }}</p>
+          </div>
+        </div>
+        <div class="info">
+          <app-icon name="clock" />
+          <div>
+            <h3>{{ directory.mode.isApi() ? 'Horario' : 'Horario de ejemplo' }}</h3>
+            <p>{{ p.hours || 'Horario por confirmar' }}</p>
+          </div>
+        </div>
+        <div class="info">
+          <app-icon name="fork" />
+          <div>
+            <h3>
+              {{ directory.mode.isApi() ? 'Precio orientativo' : 'Precio orientativo simulado' }}
+            </h3>
+            <p>{{ p.price }}</p>
+          </div>
+        </div>
+        <a
+          class="button"
+          [routerLink]="['/lugares', p.slug, 'resena']"
+          [queryParams]="{ volver: back() }"
+          >Escribir reseña<app-icon name="star" /></a
+        ><small>{{
+          directory.mode.isApi()
+            ? '¿Ya estuviste aquí? Comparte tu experiencia.'
+            : '¿Ya estuviste aquí? Comparte tu experiencia de demostración.'
+        }}</small>
+      </aside>
+    </div>
+  }
+</div>

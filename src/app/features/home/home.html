@@ -1,0 +1,103 @@
+<app-home-hero />
+<section class="container categories" aria-labelledby="categories-title">
+  <div class="section-heading">
+    <div>
+      <p class="eyebrow">A TU MANERA</p>
+      <h2 id="categories-title">¿Qué se te antoja hoy?</h2>
+    </div>
+    <p>Un lugar para cada plan.</p>
+  </div>
+  <div class="category-grid">
+    @for (category of directory.categories(); track category.id) {
+      <a
+        class="category-card"
+        [routerLink]="['/lugares']"
+        [queryParams]="{ categoria: category.id }"
+        ><span class="category-icon" [class]="'category-icon ' + category.id"
+          ><app-icon [name]="category.icon" /></span
+        ><span
+          ><strong>{{ category.name }}</strong
+          ><small>{{ category.description }}</small></span
+        ><app-icon class="category-arrow" name="arrow"
+      /></a>
+    }
+  </div>
+</section>
+
+<section class="container featured" aria-labelledby="featured-title">
+  <div class="section-heading">
+    <div>
+      <p class="eyebrow">PARA EMPEZAR A EXPLORAR</p>
+      <h2 id="featured-title">Lugares que invitan a quedarse</h2>
+    </div>
+    <a class="link-arrow" routerLink="/lugares">Ver todos los lugares<app-icon name="arrow" /></a>
+  </div>
+  <app-load-state
+    [loading]="directory.repository.loading()"
+    [error]="directory.repository.error()"
+    [empty]="!featured().length"
+    (retry)="directory.repository.load()"
+  />
+  @if (favorites.error()) {
+    <p class="error-message" role="alert">{{ favorites.error() }}</p>
+  }
+  <div class="place-grid">
+    @for (place of featured(); track place.id) {
+      <app-place-card
+        [place]="place"
+        [category]="directory.category(place.categoryIds[0])"
+        [saved]="favorites.has(place.id)"
+        (favoriteChange)="favorites.toggle($event)"
+      />
+    }
+  </div>
+</section>
+
+<section class="container story">
+  <div class="story-image">
+    <img
+      ngSrc="/media/landscape.webp"
+      fill
+      sizes="(max-width: 768px) 100vw, 50vw"
+      alt="Paisaje de montañas, una imagen ilustrativa para inspirar tu próxima salida"
+    /><span>UN RESPIRO, UNA NUEVA PERSPECTIVA</span>
+  </div>
+  <div class="story-content">
+    <p class="eyebrow">MÁS ALLÁ DE LA MESA</p>
+    <h2>
+      La Llajta también<br />
+      se descubre <em>caminando.</em>
+    </h2>
+    <p>
+      Entre sabores, rincones y paisajes, siempre hay una razón para salir. Encuentra ese lugar que
+      convierte una tarde cualquiera en un buen recuerdo.
+    </p>
+    <a class="button secondary" routerLink="/lugares" [queryParams]="{ categoria: 'atractivos' }"
+      >Descubrir atractivos<app-icon name="arrow" /></a
+    ><span class="story-caption">Fotografías ilustrativas · Lugares de demostración</span>
+  </div>
+</section>
+
+<section class="container how">
+  <div>
+    <p class="eyebrow">PEQUEÑOS PLANES, GRANDES RECUERDOS</p>
+    <h2>Tu próximo plan, en tres pasos.</h2>
+  </div>
+  <div class="steps">
+    <div>
+      <span>01</span>
+      <h3>Encuentra tu lugar</h3>
+      <p>Busca por categoría, sabor o zona.</p>
+    </div>
+    <div>
+      <span>02</span>
+      <h3>Conoce los detalles</h3>
+      <p>Explora fotografías y experiencias.</p>
+    </div>
+    <div>
+      <span>03</span>
+      <h3>Comparte tu historia</h3>
+      <p>Guarda tus favoritos y deja una reseña.</p>
+    </div>
+  </div>
+</section>

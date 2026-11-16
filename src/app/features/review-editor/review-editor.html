@@ -1,0 +1,165 @@
+<div class="container editor">
+  <app-load-state
+    [loading]="directory.repository.loading()"
+    [error]="directory.repository.error()"
+    [empty]="!directory.repository.loading() && !place()"
+    heading="Este lugar no está disponible"
+    message="Explora el catálogo para escribir una reseña de otro lugar."
+    (retry)="directory.repository.load()"
+  />
+  @if (place(); as p) {
+    <a class="link-arrow" [routerLink]="['/lugares', p.slug]" [queryParams]="{ volver: routeBack }"
+      ><app-icon name="back" />Volver a {{ p.name }}</a
+    >
+    <div class="page-heading">
+      <p class="eyebrow">TU EXPERIENCIA CUENTA</p>
+      <h1>Cuéntanos tu historia.</h1>
+      <p>
+        Una reseña para <strong>{{ p.name }}</strong> · {{ p.zone }}
+      </p>
+    </div>
+    @if (duplicate()) {
+      <div class="notice">
+        <h2>Tu historia ya es parte de este lugar.</h2>
+        <p>Cada perfil puede publicar una reseña por lugar.</p>
+        <a
+          class="button"
+          [routerLink]="['/lugares', p.slug]"
+          [queryParams]="{ volver: routeBack }"
+          fragment="reviews-title"
+          >Ver mi reseña<app-icon name="arrow"
+        /></a>
+      </div>
+    } @else {
+      <form [formGroup]="form" (ngSubmit)="submit()" class="review-form">
+        <fieldset [disabled]="saving()">
+          <legend>Tu calificación *</legend>
+          <p id="rating-help">¿Cómo fue tu experiencia? Elige de 1 a 5 estrellas.</p>
+          <div class="rating-options">
+            @for (star of stars; track star) {
+              <label [class.filled]="star <= chosen()"
+                ><input
+                  type="radio"
+                  formControlName="rating"
+                  [value]="star"
+                  [attr.aria-label]="star + (star === 1 ? ' estrella' : ' estrellas')"
+                  aria-describedby="rating-help rating-error" /><app-icon name="star"
+              /></label>
+            }
+            <span aria-live="polite">{{
+              chosen() ? chosen() + ' de 5' : 'Elige tu calificación'
+            }}</span>
+          </div>
+          @if (submitted() && form.controls.rating.invalid) {
+            <p class="field-error" id="rating-error">Elige una calificación de 1 a 5 estrellas.</p>
+          }
+        </fieldset>
+        <div class="field comment-field">
+          <label for="comment">Tu reseña *</label
+          ><textarea
+            id="comment"
+            rows="6"
+            formControlName="comment"
+            maxlength="1000"
+            placeholder="¿Qué te gustó? ¿Qué recomendarías a alguien que lo visita por primera vez?"
+            aria-describedby="comment-help comment-error"
+            [attr.aria-invalid]="submitted() && form.controls.comment.invalid"
+          ></textarea>
+          <div class="comment-meta">
+            <small id="comment-help"
+              >Entre 10 y 1000 caracteres.
+              {{
+                mode.isApi()
+                  ? 'La reseña se guardará en el servidor.'
+                  : 'Comparte una experiencia ficticia para probar la web.'
+              }}</small
+            ><span>{{ comment().length }}/1000</span>
+          </div>
+          @if (submitted() && form.controls.comment.invalid) {
+            <span class="field-error" id="comment-error"
+              >Escribe entre 10 y 1000 caracteres, sin contar espacios al inicio o al final.</span
+            >
+          }
+        </div>
+        @if (!mode.isApi()) {
+          <div class="photo-field">
+            <div class="field">
+              <label for="review-photo">Añade una fotografía <span>(opcional)</span></label>
+              <p id="photo-help">
+                JPG, PNG o WebP · Máximo 5 MB. Usa una foto de prueba: se guardará en este navegador
+                junto a tu reseña.
+              </p>
+              <input
+                #fileInput
+                id="review-photo"
+                type="file"
+                accept="image/jpeg,image/png,image/webp"
+                [disabled]="saving()"
+                (change)="pickPhoto($event)"
+                aria-describedby="photo-help photo-error"
+                [attr.aria-invalid]="!!photoError()"
+              />
+            </div>
+            @if (processing()) {
+              <p role="status">Preparando tu fotografía…</p>
+            }
+            @if (preview()) {
+              <div class="preview">
+                <img
+                  [src]="preview()"
+                  width="280"
+                  height="190"
+                  alt="Vista previa de la fotografía que adjuntarás"
+                /><button
+                  type="button"
+                  class="text-button"
+                  (click)="clearPhoto(); fileInput.value = ''"
+                >
+                  <app-icon name="close" />Quitar fotografía
+                </button>
+              </div>
+            }
+            @if (photoError()) {
+              <p id="photo-error" class="field-error" role="alert">{{ photoError() }}</p>
+              <button
+                type="button"
+                class="text-button"
+                (click)="clearPhoto(); fileInput.value = ''"
+              >
+                Continuar sin fotografía
+              </button>
+            }
+          </div>
+        } @else {
+          <p class="notice">
+            La API todavía no recibe fotos; en este modo se enviarán la calificación y el
+            comentario.
+          </p>
+        }
+        <p class="notice">
+          Publicarás como <strong>{{ session.profile()?.name }}</strong
+          >.
+          {{
+            mode.isApi()
+              ? 'Esta reseña se guardará en la base de datos.'
+              : 'Esta reseña es de demostración y solo estará disponible en este navegador.'
+          }}
+        </p>
+        @if (error()) {
+          <p class="error-message" role="alert">{{ error() }}</p>
+        }
+        <div class="actions">
+          <button type="submit" class="button" [disabled]="saving() || processing()">
+            {{ saving() ? 'Guardando tu historia…' : 'Publicar reseña'
+            }}<app-icon name="arrow" /></button
+          ><a
+            class="text-button"
+            [routerLink]="['/lugares', p.slug]"
+            [queryParams]="{ volver: routeBack }"
+            >Cancelar</a
+          >
+        </div>
+      </form>
+    }
+  }
+</div>

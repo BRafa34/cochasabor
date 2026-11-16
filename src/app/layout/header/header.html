@@ -1,0 +1,46 @@
+<header>
+  <div class="container bar">
+    <a routerLink="/" class="brand" aria-label="CochaSabor, inicio" (click)="open.set(false)"
+      ><span class="brand-mark"><app-icon name="fork" /></span>Cocha<span>Sabor</span
+      ><span class="brand-dot">.</span></a
+    >
+    <nav aria-label="Navegación principal" [class.open]="open()" id="nav-principal">
+      <a
+        routerLink="/"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: true }"
+        (click)="open.set(false)"
+        >Inicio</a
+      ><a routerLink="/lugares" routerLinkActive="active" (click)="open.set(false)"
+        >Explorar lugares</a
+      ><a routerLink="/favoritos" routerLinkActive="active" (click)="open.set(false)"
+        ><app-icon name="heart" />Mis favoritos</a
+      >
+      @if (session.profile(); as user) {
+        <span class="profile"><app-icon name="user" />{{ user.name }}</span
+        ><button class="text-button" (click)="logout()">Salir</button>
+      } @else {
+        <a class="access" routerLink="/acceso" routerLinkActive="active" (click)="open.set(false)"
+          >Ingresar<app-icon name="arrow"
+        /></a>
+      }
+      <button
+        class="source-toggle"
+        type="button"
+        [attr.aria-pressed]="mode.isApi()"
+        (click)="toggleMode()"
+      >
+        {{ mode.isApi() ? 'Ver demo local' : 'Ver API' }}
+      </button>
+    </nav>
+    <button
+      class="menu"
+      [attr.aria-expanded]="open()"
+      aria-controls="nav-principal"
+      [attr.aria-label]="open() ? 'Cerrar menú' : 'Abrir menú'"
+      (click)="open.set(!open())"
+    >
+      <app-icon [name]="open() ? 'close' : 'menu'" />
+    </button>
+  </div>
+</header>

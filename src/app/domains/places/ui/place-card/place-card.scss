@@ -1,0 +1,124 @@
+:host {
+  display: block;
+  min-width: 0;
+}
+.card {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 15px;
+  overflow: hidden;
+  transition:
+    box-shadow 0.2s,
+    transform 0.2s;
+}
+.card:hover {
+  box-shadow: 0 10px 30px #2029230c;
+  transform: translateY(-3px);
+}
+.cover {
+  position: relative;
+  aspect-ratio: 1.55;
+  background: #e8e4d9;
+}
+.cover > a {
+  display: block;
+  height: 100%;
+  position: relative;
+}
+.cover img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.badge {
+  position: absolute;
+  left: 16px;
+  bottom: 15px;
+  background: #fff7ed;
+  color: #3f493c;
+  font-size: 0.7rem;
+  font-weight: 600;
+  padding: 6px 11px;
+  border-radius: 5px;
+}
+.save {
+  position: absolute;
+  right: 13px;
+  top: 13px;
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border: 0;
+  border-radius: 50%;
+  background: #fff;
+  color: #333b32;
+  cursor: pointer;
+}
+.save.saved {
+  background: var(--terracotta);
+  color: #fff;
+}
+.body {
+  padding: 21px 22px 15px;
+}
+.zone {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  color: var(--muted);
+  font-size: 0.73rem;
+}
+.zone app-icon {
+  width: 13px;
+  height: 13px;
+}
+.zone > span {
+  margin-left: auto;
+  color: #4e584b;
+}
+h3 {
+  font-size: 1.5rem;
+  margin: 12px 0 8px;
+}
+h3 a {
+  text-decoration: none;
+}
+.body p {
+  font-size: 0.82rem;
+  line-height: 1.6;
+  color: var(--muted);
+  margin: 0 0 15px;
+  min-height: 42px;
+}
+.bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 4px;
+  padding-top: 11px;
+  border-top: 1px solid var(--border);
+}
+.card-link {
+  display: grid;
+  place-items: center;
+  min-width: 44px;
+  min-height: 44px;
+  color: var(--terracotta);
+}
+.image-fallback {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  color: var(--muted);
+}
+@media (prefers-reduced-motion: reduce) {
+  .card {
+    transition: none;
+  }
+  .card:hover {
+    transform: none;
+  }
+}

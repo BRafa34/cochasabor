@@ -1,0 +1,11 @@
+<a class="skip-link" href="#contenido">Saltar al contenido</a>
+<app-header />
+@if (mode.isApi()) {
+  <aside class="api-mode-note" role="status">
+    Vista API: los datos principales vienen de MariaDB. Si faltan medios u horarios en la base, se
+    muestran los datos visuales de demostración para mantener la ficha completa.
+  </aside>
+}
+<main id="contenido" tabindex="-1"><router-outlet /></main>
+<app-footer />
+<app-chatbot />

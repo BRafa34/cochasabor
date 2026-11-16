@@ -1,0 +1,108 @@
+<div class="container">
+  <div class="page-heading">
+    <p class="eyebrow"><app-icon name="compass" />ELIGE TU PRÓXIMO PLAN</p>
+    <h1>Cochabamba, por descubrir.</h1>
+    <p>Desde ese primer café hasta la última vista del día. Encuentra tu lugar.</p>
+  </div>
+  <form class="search-row" (submit)="searchPlaces(query.value); $event.preventDefault()">
+    <div class="search-field">
+      <app-icon name="search" /><label class="sr-only" for="catalog-search"
+        >Buscar lugar, comida o zona</label
+      ><input
+        id="catalog-search"
+        #query
+        [value]="filters().q"
+        placeholder="Busca un lugar, comida o zona…"
+        maxlength="120"
+      />
+    </div>
+    <button class="button" type="submit">Buscar<app-icon name="arrow" /></button>
+  </form>
+  <nav class="filters" aria-label="Filtrar por categoría">
+    <button
+      [class.selected]="!filters().categoria"
+      [attr.aria-pressed]="!filters().categoria"
+      (click)="change({ categoria: '' })"
+    >
+      <app-icon name="compass" />Todos los lugares
+    </button>
+    @for (category of directory.categories(); track category.id) {
+      <button
+        [class.selected]="filters().categoria === category.id"
+        [attr.aria-pressed]="filters().categoria === category.id"
+        (click)="change({ categoria: category.id })"
+      >
+        <app-icon [name]="category.icon" />{{ category.name }}
+      </button>
+    }
+  </nav>
+  <div class="results-bar">
+    <p role="status">
+      <strong>{{ results().total }}</strong>
+      {{ results().total === 1 ? 'lugar para descubrir' : 'lugares para descubrir' }}
+      @if (filters().q) {
+        <span> · “{{ filters().q }}”</span>
+      }
+    </p>
+    <div>
+      <label for="sort">Ordenar por</label
+      ><select id="sort" [value]="filters().orden" (change)="changeOrder(order.value)" #order>
+        <option value="recomendados">Selección CochaSabor</option>
+        <option value="valoracion">Mejor valoración</option>
+        <option value="nombre">Nombre: A–Z</option>
+      </select>
+    </div>
+  </div>
+  @if (filters().q || filters().categoria) {
+    <button class="text-button clear" (click)="reset()">
+      <app-icon name="close" />Limpiar filtros
+    </button>
+  }
+  <app-load-state
+    [loading]="directory.repository.loading()"
+    [error]="directory.repository.error()"
+    [empty]="!results().total"
+    [clearable]="true"
+    (retry)="directory.repository.load()"
+    (clear)="reset()"
+  />
+  @if (favorites.error()) {
+    <p class="error-message" role="alert">{{ favorites.error() }}</p>
+  }
+  <div class="place-grid">
+    @for (place of results().items; track place.id) {
+      <app-place-card
+        [place]="place"
+        [priority]="$index === 0"
+        [category]="directory.category(place.categoryIds[0])"
+        [saved]="favorites.has(place.id)"
+        [returnUrl]="router.url"
+        (favoriteChange)="favorites.toggle($event)"
+      />
+    }
+  </div>
+  @if (pages().length > 1) {
+    <nav class="pagination" aria-label="Páginas de lugares">
+      @for (page of pages(); track page) {
+        <button
+          [class.current]="results().page === page"
+          [attr.aria-current]="results().page === page ? 'page' : null"
+          [attr.aria-label]="'Ir a la página ' + page"
+          (click)="change({ pagina: page })"
+        >
+          {{ page }}
+        </button>
+      }
+    </nav>
+  }
+  @if (directory.mode.isApi()) {
+    <p class="demo-note">
+      Lugares y reseñas cargados desde la API. Los horarios, precios e imágenes pueden usar
+      contenido visual de demostración mientras la base de datos no tenga esos datos.
+    </p>
+  } @else {
+    <p class="demo-note">
+      Estás explorando datos de demostración. Lugares, horarios, precios y reseñas son simulados.
+    </p>
+  }
+</div>

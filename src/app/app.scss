@@ -1,0 +1,17 @@
+:host {
+  display: block;
+}
+main {
+  min-height: 65vh;
+}
+:host {
+  display: block;
+}
+.api-mode-note {
+  padding: 9px 24px;
+  color: var(--green);
+  background: #edf3ec;
+  border-bottom: 1px solid var(--border);
+  text-align: center;
+  font-size: 0.75rem;
+}

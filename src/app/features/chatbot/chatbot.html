@@ -1,0 +1,62 @@
+<button
+  class="chat-launcher"
+  type="button"
+  aria-controls="cochasabor-chat"
+  [attr.aria-expanded]="open()"
+  [attr.aria-label]="open() ? 'Cerrar asistente' : 'Abrir asistente CochaSabor'"
+  (click)="open.set(!open())"
+>
+  @if (open()) {
+    <app-icon name="close" />
+    <span>Cerrar</span>
+  } @else {
+    <span class="bubble" aria-hidden="true">?</span>
+    <span>¿Dudas?</span>
+  }
+</button>
+
+@if (open()) {
+  <section id="cochasabor-chat" class="chat-panel" role="dialog" aria-label="Asistente CochaSabor">
+    <header class="chat-header">
+      <div class="assistant-mark" aria-hidden="true">C</div>
+      <div>
+        <h2>Asistente CochaSabor</h2>
+        <p>Ayuda sobre el sitio y sus lugares</p>
+      </div>
+      <button class="close-button" type="button" aria-label="Cerrar asistente" (click)="close()">
+        <app-icon name="close" />
+      </button>
+    </header>
+
+    <div class="conversation" role="log" aria-live="polite" aria-relevant="additions">
+      @for (message of messages(); track message.id) {
+        <p
+          class="message"
+          [class.user-message]="message.role === 'user'"
+          [class.error-message]="message.error"
+        >
+          {{ message.content }}
+        </p>
+      }
+      @if (sending()) {
+        <p class="message pending" role="status">Estoy buscando en la información del sitio…</p>
+      }
+    </div>
+
+    <form class="chat-form" [formGroup]="form" (ngSubmit)="send()">
+      <label class="sr-only" for="chat-question">Escribe tu pregunta sobre CochaSabor</label>
+      <textarea
+        id="chat-question"
+        rows="2"
+        maxlength="700"
+        formControlName="message"
+        placeholder="Pregunta sobre lugares o cómo usar la página…"
+        [disabled]="sending()"
+      ></textarea>
+      <button class="send-button" type="submit" [disabled]="sending() || form.invalid">
+        Enviar<app-icon name="arrow" />
+      </button>
+    </form>
+    <p class="chat-note">Responde solo sobre CochaSabor · Gemma 3 local</p>
+  </section>
+}

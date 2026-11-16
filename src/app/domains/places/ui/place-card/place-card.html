@@ -1,0 +1,54 @@
+<article class="card">
+  <div class="cover">
+    <a
+      [routerLink]="['/lugares', place().slug]"
+      [queryParams]="{ volver: returnUrl() }"
+      [attr.aria-label]="'Ver ' + place().name"
+    >
+      @if (!imageFailed()) {
+        <img
+          [ngSrc]="place().image"
+          [priority]="priority()"
+          fill
+          sizes="(max-width: 600px) 100vw, (max-width: 1024px) 50vw, 33vw"
+          [alt]="place().imageAlt"
+          (error)="imageFailed.set(true)"
+        />
+      } @else {
+        <div class="image-fallback">
+          <app-icon name="camera" /><span>Fotografía no disponible</span>
+        </div>
+      }
+    </a>
+    <span class="badge">{{ category() }}</span
+    ><button
+      class="save"
+      [class.saved]="saved()"
+      [attr.aria-label]="(saved() ? 'Quitar de favoritos: ' : 'Guardar lugar: ') + place().name"
+      [attr.aria-pressed]="saved()"
+      (click)="favoriteChange.emit(place().id)"
+    >
+      <app-icon name="heart" />
+    </button>
+  </div>
+  <div class="body">
+    <div class="zone">
+      <app-icon name="pin" />{{ place().zone }}<span>{{ place().price }}</span>
+    </div>
+    <h3>
+      <a [routerLink]="['/lugares', place().slug]" [queryParams]="{ volver: returnUrl() }">{{
+        place().name
+      }}</a>
+    </h3>
+    <p>{{ place().shortDescription }}</p>
+    <div class="bottom">
+      <app-rating [value]="place().ratingAverage" [count]="place().reviewCount" /><a
+        class="card-link"
+        [routerLink]="['/lugares', place().slug]"
+        [queryParams]="{ volver: returnUrl() }"
+        [attr.aria-label]="'Ver lugar: ' + place().name"
+        ><app-icon name="arrow"
+      /></a>
+    </div>
+  </div>
+</article>
