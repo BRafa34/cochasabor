@@ -2,7 +2,7 @@
 
 ## 2026-10-13 · Frontend con JSON
 
-- Se conserva `Agente.md` sin modificar. `AGENTS.md` la referencia y especifica el alcance autorizado por el usuario: solo frontend.
+- Las instrucciones del proyecto se consolidaron en `AGENTS.md`; el alcance de esta etapa cambió desde el frontend de demostración hacia la integración Angular/API.
 - Proyecto Angular SPA standalone, zoneless, rutas diferidas, TypeScript estricto, strictTemplates, Signals y formularios reactivos. Ninguna librería visual o de estado añadida.
 - Framework, compiler, CLI y build fijados a **22.2.2**. Se comenzó con 22.0 para contrastar la matriz publicada; la auditoría señaló correcciones posteriores dentro de la mayor 22. La actualización mantiene paquetes coherentes y no usa `--force` ni `--legacy-peer-deps`.
 - La [tabla oficial](https://angular.dev/reference/versions) disponible publica la fila 22.0.x. Para **22.2.2** se comprobaron también `engines` de CLI/build/compiler-cli y `peerDependencies` de compiler-cli/build directamente en npm: Node `^22.22.3 || ^24.15.0 || >=26.0.0`; TypeScript `>=6.0 <6.1`; RxJS admitido por core `^6.5.3 || ^7.4.0`.
@@ -17,8 +17,8 @@
 - Perfiles ficticios y favoritos en localStorage. No se guardan credenciales ni se simula seguridad de sesión. Otro perfil no ve favoritos del anterior; cerrar el acceso oculta su colección.
 - Reseñas y fotos de **prueba** en IndexedDB. El formulario informa que la fotografía se guarda en el navegador; no se trata como subida al servidor. Solo éxito al completar la transacción; duplicados rechazados. La foto se decodifica y recomprime a WebP de máximo 1200 px; URLs temporales se liberan.
 - Contrato frontend para medios: rutas locales `/media/…`, sin traversal ni `javascript:`. Comentarios como texto; no HTML dinámico ni `bypassSecurityTrust`.
-- No se añade un repositorio HTTP sin servidor para aparentar integración. Su sustitución por inyección será parte de M2 al autorizar backend; ver `api.md`.
-- Backend: **no implementado por alcance directo**. La selección de tecnología, sesiones seguras, permisos y BD se hará en un encargo posterior.
+- Decisión inicial, actualizada el 17/11/2026: no crear un repositorio HTTP sin servidor. Ahora la API Node/Express existe y el adaptador HTTP de Angular forma parte de la etapa vigente; ver `api.md`.
+- El backend empezó fuera del alcance inicial. El alcance vigente ya incluye integrarlo con Angular y comprobar lectura, cuentas, reseñas y favoritos de extremo a extremo. El chatbot y el despliegue siguen pospuestos.
 
 ## 2026-11-15 · Diseño conceptual de datos
 
@@ -32,7 +32,7 @@
 ## 2026-11-15 · Actualización de alcance
 
 - El frontend Angular 22 de demostración ya fue completado. La etapa vigente es implementar la base de datos relacional, migraciones y datos semilla.
-- El backend se abordará después para conectar la base de datos con la web. En una etapa posterior se añadirá un chatbot limitado a preguntas sobre el sitio. No implementar backend ni chatbot durante la etapa actual.
+- Decisión de ese momento: posponer backend y chatbot. La etapa del backend cambió después; actualmente se integra con Angular. El chatbot continúa pospuesto.
 - No desplegar. Ver el alcance vigente en `AGENTS.md`.
 - Reportes: `PENDING` significa activo mientras no se retire ni se resuelva el caso; retirar cambia a `WITHDRAWN`, y resolver el caso cambia sus reportes a `RESOLVED`. Los estados cerrados se conservan, pero permiten reportar de nuevo el mismo objeto.
 - Motivos: se permiten por tipo de objeto mediante una tabla puente, para admitir motivos exclusivos de lugar/reseña y motivos compartidos, bloqueando combinaciones incompatibles.

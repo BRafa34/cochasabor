@@ -1,10 +1,10 @@
 # COCHASABOR · Requisitos y alcance
 
-Fecha: 13 de octubre de 2026. Referencia de desarrollo: [Agente.md](../Agente.md). Esta matriz reproduce los requisitos documentados en la guía; no afirma una nueva lectura independiente del PDF.
+Fecha: 13 de octubre de 2026. Referencia de desarrollo: [AGENTS.md](../AGENTS.md). Esta matriz resume los requisitos de producto registrados en las instrucciones del proyecto; no afirma una nueva lectura independiente del PDF.
 
 ## Alcance autorizado
 
-El frontend Angular 22 de demostración está construido. El alcance actual es preparar e implementar la base de datos relacional MariaDB mediante XAMPP/phpMyAdmin, en un único script SQL con esquema y datos mínimos de demostración. API y backend se implementarán después; la estructura y los contratos se documentan ahora para evitar reorganizaciones. El chatbot y el despliegue quedan para etapas posteriores. Los datos JSON y el almacenamiento del navegador siguen siendo solo la demostración del frontend.
+El frontend Angular 22 de demostración y la base MariaDB están construidos. El alcance actual es integrar Angular con el backend Node.js/Express para lectura pública, cuentas, reseñas y favoritos. El chatbot y el despliegue quedan para etapas posteriores. Los datos JSON y el almacenamiento del navegador siguen siendo solo la demostración del frontend hasta completar el adaptador HTTP.
 
 | Requisito de la guía                                           | Origen indicado | Evidencia esperada en el frontend                                      | Integración posterior                              |
 | -------------------------------------------------------------- | --------------- | ---------------------------------------------------------------------- | -------------------------------------------------- |

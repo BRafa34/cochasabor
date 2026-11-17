@@ -1,6 +1,6 @@
 # CochaSabor
 
-Directorio gastronómico y turístico de Cochabamba, construido siguiendo [Agente.md](Agente.md). El frontend usa Angular **22.2.2**, standalone, zoneless, TypeScript estricto, Signals, SCSS y rutas con carga diferida. La base relacional usa MariaDB de XAMPP; el backend Node.js/Express está en su etapa inicial de lectura.
+Directorio gastronómico y turístico de Cochabamba, construido siguiendo [AGENTS.md](AGENTS.md). El frontend usa Angular **22.2.2**, standalone, zoneless, TypeScript estricto, Signals, SCSS y rutas con carga diferida. La base relacional usa MariaDB de XAMPP; el backend Node.js/Express está en integración con Angular.
 
 ## Ejecutar
 
